@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     static String login;
@@ -25,13 +27,17 @@ public class Main {
             return false;
         }
     }
-
+    // 1234567890_asdfghjKG
     public static boolean loginIsCorrect(String login) throws  WrongLoginException {
-       if  (login.length() <= 20) return true;
+        Pattern p = Pattern.compile("[A-z0-9_-]{1,20}");
+        Matcher m = p.matcher(login);
+       if  (m.matches()) return true;
        else throw new WrongLoginException();
     }
     public static boolean passwordIsCorrect(String password) throws WrongPasswordException {
-        if  (password.length() <= 20) return true;
+        Pattern p = Pattern.compile("[A-z0-9_-]{1,20}");
+        Matcher m = p.matcher(password);
+        if  (m.matches()) return true;
         else throw new WrongPasswordException();
     }
 
