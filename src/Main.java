@@ -6,6 +6,7 @@ public class Main {
     static String login;
     static String password;
     static String confirmPassword;
+    final static String PATTERN = "[A-z0-9_-]{1,20}";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         login = scanner.nextLine();
@@ -29,13 +30,13 @@ public class Main {
     }
     // 1234567890_asdfghjKG
     public static boolean loginIsCorrect(String login) throws  WrongLoginException {
-        Pattern p = Pattern.compile("[A-z0-9_-]{1,20}");
+        Pattern p = Pattern.compile(PATTERN);
         Matcher m = p.matcher(login);
        if  (m.matches()) return true;
        else throw new WrongLoginException();
     }
     public static boolean passwordIsCorrect(String password) throws WrongPasswordException {
-        Pattern p = Pattern.compile("[A-z0-9_-]{1,20}");
+        Pattern p = Pattern.compile(PATTERN);
         Matcher m = p.matcher(password);
         if  (m.matches()) return true;
         else throw new WrongPasswordException();
